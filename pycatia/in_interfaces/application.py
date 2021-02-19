@@ -7,7 +7,7 @@ from pathlib import Path
 
 from pycatia.enumeration.enumeration_types import cat_script_language
 from pycatia.exception_handling.exceptions import CATIAApplicationException
-from pycatia.in_interfaces.document import Document
+# from pycatia.in_interfaces.document import Document
 from pycatia.in_interfaces.documents import Documents
 from pycatia.in_interfaces.file_system import FileSystem
 from pycatia.in_interfaces.printer import Printer
@@ -20,6 +20,7 @@ from pycatia.system_interfaces.any_object import AnyObject
 from pycatia.system_interfaces.system_service import SystemService
 from pycatia.in_interfaces.setting_controllers import SettingControllers
 
+from pycatia.document_type import document_type
 
 class Application(AnyObject):
     """
@@ -68,7 +69,7 @@ class Application(AnyObject):
         self.com_object = com_object
 
     @property
-    def active_document(self) -> Document:
+    def active_document(self) -> 'specific_document':
         """
         .. note::
             :class: toggle
@@ -91,7 +92,9 @@ class Application(AnyObject):
         :rtype: Document
         """
         try:
-            return Document(self.com_object.ActiveDocument)
+            active_doc_com = self.com_object.ActiveDocument
+            doc_suffix = active_doc_com.Name.split('.')[-1]
+            return document_type[doc_suffix](active_doc_com)
         except com_error:
             raise CATIAApplicationException('Is there an active document?')
 
