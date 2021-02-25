@@ -10,6 +10,10 @@
 """
 
 from pycatia.system_interfaces.collection import Collection
+from pycatia.types import cat_variant
+from pycatia.funct_system_interfaces.functional_object import FunctionalObject
+from pycatia.funct_system_interfaces.functional_description import FunctionalDescription
+from pycatia.funct_system_interfaces.functional_object_proxy import FunctionalObjectProxy
 
 
 class FunctionalObjects(Collection):
@@ -100,7 +104,7 @@ class FunctionalObjects(Collection):
         # # system_service = SystemService(self.application.SystemService)
         # # return system_service.evaluate(vba_code, 0, vba_function_name, [self.com_object])
 
-    def elem(self, i_index: CATVariant) -> FunctionalObject:
+    def elem(self, i_index: cat_variant) -> FunctionalObject:
         """
         .. note::
             :class: toggle

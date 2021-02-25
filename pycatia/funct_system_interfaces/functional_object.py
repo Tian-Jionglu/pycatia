@@ -9,8 +9,9 @@
         
 """
 
-
-
+from pycatia.funct_system_interfaces.functional_position import FunctionalPosition
+from pycatia.funct_system_interfaces.functional_facet import FunctionalFacet
+from pycatia.funct_system_interfaces.functional_facet_mgr import FunctionalFacetMgr
 
 class FunctionalObject(FunctionalPosition):
 

@@ -9,7 +9,7 @@
         
 """
 
-
+from pycatia.funct_system_interfaces.functional_element import FunctionalElement
 
 
 class FunctionalPosition(FunctionalElement):

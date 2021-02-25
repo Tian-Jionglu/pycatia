@@ -37,7 +37,7 @@ class FunctionalElement(AnyObject):
         self.functional_element = com_object
 
     @property
-    def document(self) -> FunctionalDocument:
+    def document(self) -> 'FunctionalDocument':
         """
         .. note::
             :class: toggle
@@ -51,7 +51,8 @@ class FunctionalElement(AnyObject):
         :rtype: FunctionalDocument
         """
 
-        return FunctionalDocument(self.functional_element.Document)
+        import pycatia.funct_system_interfaces.functional_document
+        return pycatia.funct_system_interfaces.functional_document.FunctionalDocument(self.functional_element.Document)
 
     @property
     def parameters(self) -> Parameters:

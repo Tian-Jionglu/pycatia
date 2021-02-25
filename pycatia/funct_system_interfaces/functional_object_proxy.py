@@ -9,7 +9,8 @@
         
 """
 
-
+from pycatia.funct_system_interfaces.functional_object import FunctionalObject
+from pycatia.funct_system_interfaces.functional_description import FunctionalDescription
 
 
 class FunctionalObjectProxy(FunctionalObject):

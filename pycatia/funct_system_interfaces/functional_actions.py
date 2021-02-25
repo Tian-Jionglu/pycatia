@@ -10,6 +10,8 @@
 """
 
 from pycatia.system_interfaces.collection import Collection
+from pycatia.funct_system_interfaces.functional_action import FunctionalAction
+from pycatia.funct_system_interfaces.functional_position import FunctionalPosition
 
 
 class FunctionalActions(Collection):

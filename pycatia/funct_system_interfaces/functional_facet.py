@@ -10,6 +10,7 @@
 """
 
 from pycatia.system_interfaces.any_object import AnyObject
+from pycatia.funct_system_interfaces.functional_element import FunctionalElement
 
 
 class FunctionalFacet(AnyObject):

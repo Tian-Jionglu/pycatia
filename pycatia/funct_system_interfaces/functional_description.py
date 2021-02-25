@@ -9,7 +9,9 @@
         
 """
 
-
+from pycatia.funct_system_interfaces.functional_element import FunctionalElement
+from pycatia.funct_system_interfaces.functional_position import FunctionalPosition
+from pycatia.funct_system_interfaces.functional_facet import FunctionalFacet
 
 
 class FunctionalDescription(FunctionalElement):
@@ -37,7 +39,7 @@ class FunctionalDescription(FunctionalElement):
         self.functional_description = com_object
 
     @property
-    def actions(self) -> FunctionalActions:
+    def actions(self) -> 'FunctionalActions':
         """
         .. note::
             :class: toggle
@@ -51,10 +53,11 @@ class FunctionalDescription(FunctionalElement):
         :rtype: FunctionalActions
         """
 
-        return FunctionalActions(self.functional_description.Actions)
+        import pycatia.funct_system_interfaces.functional_actions
+        return pycatia.funct_system_interfaces.functional_actions.FunctionalActions(self.functional_description.Actions)
 
     @property
-    def actions_groups(self) -> FunctActionsGroups:
+    def actions_groups(self) -> 'FunctActionsGroups':
         """
         .. note::
             :class: toggle
@@ -68,10 +71,11 @@ class FunctionalDescription(FunctionalElement):
         :rtype: FunctActionsGroups
         """
 
-        return FunctActionsGroups(self.functional_description.ActionsGroups)
+        import pycatia.funct_system_interfaces.funct_actions_groups
+        return pycatia.funct_system_interfaces.funct_actions_groups.FunctActionsGroups(self.functional_description.ActionsGroups)
 
     @property
-    def objects(self) -> FunctionalObjects:
+    def objects(self) -> 'FunctionalObjects':
         """
         .. note::
             :class: toggle
@@ -85,10 +89,11 @@ class FunctionalDescription(FunctionalElement):
         :rtype: FunctionalObjects
         """
 
-        return FunctionalObjects(self.functional_description.Objects)
+        import pycatia.funct_system_interfaces.functional_objects
+        return pycatia.funct_system_interfaces.functional_objects.FunctionalObjects(self.functional_description.Objects)
 
     @property
-    def variants(self) -> FunctionalVariants:
+    def variants(self) -> 'FunctionalVariants':
         """
         .. note::
             :class: toggle
@@ -104,7 +109,8 @@ class FunctionalDescription(FunctionalElement):
         :rtype: FunctionalVariants
         """
 
-        return FunctionalVariants(self.functional_description.Variants)
+        import pycatia.funct_system_interfaces.functional_variants
+        return pycatia.funct_system_interfaces.functional_variants.FunctionalVariants(self.functional_description.Variants)
 
     def create_position(self, i_x: float, i_y: float) -> FunctionalPosition:
         """
@@ -126,7 +132,7 @@ class FunctionalDescription(FunctionalElement):
         """
         return FunctionalPosition(self.functional_description.CreatePosition(i_x, i_y))
 
-    def get_facet(self, i_fm: FunctionalFacetMgr) -> FunctionalFacet:
+    def get_facet(self, i_fm: 'FunctionalFacetMgr') -> FunctionalFacet:
         """
         .. note::
             :class: toggle
@@ -158,7 +164,7 @@ class FunctionalDescription(FunctionalElement):
         """
         return FunctionalFacet(self.functional_description.GetFacetByName(i_fm))
 
-    def search_facet(self, i_fm: FunctionalFacetMgr, i_create_if_necessary: bool) -> FunctionalFacet:
+    def search_facet(self, i_fm: 'FunctionalFacetMgr', i_create_if_necessary: bool) -> FunctionalFacet:
         """
         .. note::
             :class: toggle

@@ -10,6 +10,8 @@
 """
 
 from pycatia.system_interfaces.collection import Collection
+from pycatia.types import cat_variant
+from pycatia.funct_system_interfaces.functional_facet_mgr import FunctionalFacetMgr
 
 
 class FunctFacetManagers(Collection):
@@ -35,7 +37,7 @@ class FunctFacetManagers(Collection):
         super().__init__(com_object)
         self.funct_facet_managers = com_object
 
-    def elem(self, i_index: CATVariant) -> FunctionalFacetMgr:
+    def elem(self, i_index: cat_variant) -> FunctionalFacetMgr:
         """
         .. note::
             :class: toggle

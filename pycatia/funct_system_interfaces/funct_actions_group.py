@@ -10,6 +10,8 @@
 """
 
 from pycatia.system_interfaces.any_object import AnyObject
+from pycatia.funct_system_interfaces.functional_action import FunctionalAction
+from pycatia.types import cat_variant
 
 
 class FunctActionsGroup(AnyObject):
@@ -180,7 +182,7 @@ class FunctActionsGroup(AnyObject):
         """
         return self.funct_actions_group.RemovePosition(i_position)
 
-    def retrieve(self, i_index: CATVariant) -> FunctionalAction:
+    def retrieve(self, i_index: cat_variant) -> FunctionalAction:
         """
         .. note::
             :class: toggle

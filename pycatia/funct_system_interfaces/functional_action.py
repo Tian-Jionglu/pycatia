@@ -9,8 +9,10 @@
         
 """
 
-
-
+from pycatia.funct_system_interfaces.functional_element import FunctionalElement
+from pycatia.funct_system_interfaces.functional_position import FunctionalPosition
+from pycatia.funct_system_interfaces.functional_facet import FunctionalFacet
+from pycatia.funct_system_interfaces.functional_facet_mgr import FunctionalFacetMgr
 
 class FunctionalAction(FunctionalElement):
 
@@ -37,7 +39,7 @@ class FunctionalAction(FunctionalElement):
         self.functional_action = com_object
 
     @property
-    def from(self) -> FunctionalPosition:
+    def cat_from(self) -> FunctionalPosition:
         """
         .. note::
             :class: toggle
@@ -53,8 +55,8 @@ class FunctionalAction(FunctionalElement):
 
         return FunctionalPosition(self.functional_action.From)
 
-    @from.setter
-    def from(self, value: FunctionalPosition):
+    @cat_from.setter
+    def cat_from(self, value: FunctionalPosition):
         """
         :param FunctionalPosition value:
         """
@@ -62,7 +64,7 @@ class FunctionalAction(FunctionalElement):
         self.functional_action.From = value
 
     @property
-    def group(self) -> FunctActionsGroup:
+    def group(self) -> 'FunctActionsGroup':
         """
         .. note::
             :class: toggle
@@ -78,7 +80,8 @@ class FunctionalAction(FunctionalElement):
         :rtype: FunctActionsGroup
         """
 
-        return FunctActionsGroup(self.functional_action.Group)
+        import pycatia.funct_system_interfaces.funct_actions_group
+        return pycatia.funct_system_interfaces.funct_actions_group.FunctActionsGroup(self.functional_action.Group)
 
     @property
     def orientation_direction(self) -> int:
@@ -110,7 +113,7 @@ class FunctionalAction(FunctionalElement):
         self.functional_action.OrientationDirection = value
 
     @property
-    def to(self) -> FunctionalPosition:
+    def cat_to(self) -> FunctionalPosition:
         """
         .. note::
             :class: toggle
@@ -126,8 +129,8 @@ class FunctionalAction(FunctionalElement):
 
         return FunctionalPosition(self.functional_action.To)
 
-    @to.setter
-    def to(self, value: FunctionalPosition):
+    @cat_to.setter
+    def cat_to(self, value: FunctionalPosition):
         """
         :param FunctionalPosition value:
         """
