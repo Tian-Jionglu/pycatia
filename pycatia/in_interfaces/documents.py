@@ -9,6 +9,7 @@ from pycatia.exception_handling import CATIAApplicationException
 from pycatia.in_interfaces.document import Document
 from pycatia.system_interfaces.collection import Collection
 from pycatia.types import cat_variant, list_str
+from pycatia.document_type import document_type
 
 
 class Documents(Collection):
@@ -48,7 +49,7 @@ class Documents(Collection):
         self.documents = com_object
         self.child_object = Document
 
-    def add(self, document_type) -> Document:
+    def add(self, doc_type) -> Document:
         """
         .. note::
             :class: toggle
@@ -86,15 +87,16 @@ class Documents(Collection):
         :rtype: Document
         """
 
-        document_type_uf = document_type.capitalize()
+        # doc_type_uf = doc_type.capitalize()
+        # doc_type_cat = 'CAT' + doc_type_uf
 
-        document_types = ['Part', 'Product', 'Drawing']
-        if document_type_uf not in document_types:
-            raise ValueError(f'Document type must be in [{document_types}]')
+        # document_types = ['Part', 'Product', 'Drawing']
+        # if document_type_uf not in document_types:
+        #     raise ValueError(f'Document type must be in [{document_types}]')
 
-        self.logger.info(f'Creating a new "{document_type_uf}".')
+        # self.logger.info(f'Creating a new "{document_type_uf}".')
 
-        return Document(self.documents.Add(document_type_uf))
+        return document_type[doc_type](self.documents.Add(doc_type))
 
     def count_types(self, file_type_list: list_str) -> int:
         """
