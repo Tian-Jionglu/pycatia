@@ -12,6 +12,7 @@
 from pycatia.system_interfaces.collection import Collection
 from pycatia.funct_system_interfaces.functional_action import FunctionalAction
 from pycatia.funct_system_interfaces.functional_position import FunctionalPosition
+from pycatia.types import cat_variant
 
 
 class FunctionalActions(Collection):
@@ -88,7 +89,7 @@ class FunctionalActions(Collection):
         # # system_service = SystemService(self.application.SystemService)
         # # return system_service.evaluate(vba_code, 0, vba_function_name, [self.com_object])
 
-    def elem(self, i_index: CATVariant) -> FunctionalAction:
+    def elem(self, i_index: cat_variant) -> FunctionalAction:
         """
         .. note::
             :class: toggle
@@ -124,7 +125,11 @@ class FunctionalActions(Collection):
         :return: FunctionalAction
         :rtype: FunctionalAction
         """
-        return FunctionalAction(self.functional_actions.Elem(i_index.com_object))
+        return FunctionalAction(self.functional_actions.Elem(i_index))
+
+    def __iter__(self):
+        for i in range(self.count):
+            yield FunctionalAction(self.com_object.Elem(i + 1))
 
     def __repr__(self):
         return f'FunctionalActions(name="{ self.name }")'

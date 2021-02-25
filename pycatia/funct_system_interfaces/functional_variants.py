@@ -10,7 +10,8 @@
 """
 
 from pycatia.system_interfaces.collection import Collection
-
+from pycatia.funct_system_interfaces.functional_variant import FunctionalVariant
+from pycatia.types import cat_variant
 
 class FunctionalVariants(Collection):
 
@@ -82,7 +83,7 @@ class FunctionalVariants(Collection):
         # # system_service = SystemService(self.application.SystemService)
         # # return system_service.evaluate(vba_code, 0, vba_function_name, [self.com_object])
 
-    def elem(self, i_index: CATVariant) -> FunctionalVariant:
+    def elem(self, i_index: cat_variant) -> FunctionalVariant:
         """
         .. note::
             :class: toggle
@@ -119,6 +120,10 @@ class FunctionalVariants(Collection):
         :rtype: FunctionalVariant
         """
         return FunctionalVariant(self.functional_variants.Elem(i_index.com_object))
+
+    def __iter__(self):
+        for i in range(self.count):
+            yield FunctionalVariant(self.com_object.Elem(i + 1))
 
     def __repr__(self):
         return f'FunctionalVariants(name="{ self.name }")'

@@ -38,6 +38,7 @@ class FunctionalObjects(Collection):
     def __init__(self, com_object):
         super().__init__(com_object)
         self.functional_objects = com_object
+        self.child_object = FunctionalObject
 
     def create(self, i_name: str) -> FunctionalObject:
         """
@@ -140,7 +141,11 @@ class FunctionalObjects(Collection):
         :return: FunctionalObject
         :rtype: FunctionalObject
         """
-        return FunctionalObject(self.functional_objects.Elem(i_index.com_object))
+        return FunctionalObject(self.functional_objects.Elem(i_index))
+
+    def __iter__(self):
+        for i in range(self.count):
+            yield FunctionalObject(self.com_object.Elem(i + 1))
 
     def __repr__(self):
         return f'FunctionalObjects(name="{ self.name }")'
